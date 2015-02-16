@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Topics</h1>
 
+<h1>Listing Topics</h1>
+<h2> Total Topics Found: <%= @topics.length %></h2>
 <table>
   <thead>
     <tr>
@@ -12,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @topics.each do |topic| %>
+    <% @topics.each_with_index do |topic| %>
       <tr>
         <td><%= topic.title %></td>
         <td><%= topic.description %></td>
@@ -20,6 +21,7 @@
         <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
         <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+       <% # need "progress endpoint" to send @topics.length / topic.index (e.g. 10 / 3 = .33) %>
     <% end %>
   </tbody>
 </table>
